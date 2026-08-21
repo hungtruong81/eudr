@@ -1,0 +1,34 @@
+export interface IPurchaseOrder {
+  sale_order_id: number;
+  sale_order_code: string;
+  company_id: number;
+  customer_id: number;
+  buyer_company_id: number;
+  buyer_user_id: number;
+  contract_id: number;
+  quotation_id: number;
+  order_date: string;
+  delivery_date: string;
+  order_source_type: string;
+  payment_terms: string | null;
+  delivery_address: string | null;
+  currency: string;
+  status: string;
+  total_amount: number;
+  notes: null;
+  created_at: string;
+  created_by: number;
+  updated_at: string | null;
+  updated_by: number;
+  customer_code: string | null;
+  customer_name: string | null;
+  customer_phone: string | null;
+  customer_email: string | null;
+  customer_company_name: string | null;
+  tax_code: string | null;
+  customer_type: string | null;
+  buyer_company_name: string | null;
+  buyer_company_code: string | null;
+  buyer_user_name: string;
+  items: [];
+}

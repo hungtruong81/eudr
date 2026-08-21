@@ -1,0 +1,7 @@
+<VirtualHost *:80>
+    ServerName app.example.com
+    ProxyPreserveHost On
+    ProxyPass / http://127.0.0.1:3000/
+    ProxyPassReverse / http://127.0.0.1:3000/
+    # Add TLS redirect and certificate configuration for production.
+</VirtualHost>

@@ -1,0 +1,62 @@
+services:
+    slim:
+        container_name: eudr_2025_api # Change with Project ID
+        image: quangdinh/eudr_2025_api:1.0.1
+        build: .
+        environment:
+            docker: "true"
+        ports:
+            - 8087:80
+        volumes:
+            - .:/var/www
+            - ./logs:/var/www/logs
+            - ./public:/var/www/html
+        depends_on:
+            - eudr_2025_db
+            - memcached
+        networks:
+            - default
+        env_file:
+        - ./config/.env
+
+    eudr_2025_db:
+        container_name: eudr_2025_db
+        platform: linux/x86_64
+        image: mysql:8.2
+        ports:
+            - "3312:3306"
+        user: "root"
+        volumes:
+            - ./db:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=docker
+            - MYSQL_DATABASE=db_docker
+        networks:
+            - default
+
+    memcached:
+        image: memcached:latest
+        dns: 8.8.8.8
+        ports:
+            - "11211:11211"
+        networks:
+            - default
+    # redis:
+    #     image: 'redis:5.0.7-alpine'
+    #     ports:
+    #         - 6379:6379
+    #     networks:
+    #         - default
+
+# networks:
+#     backend:
+#         name: backend
+
+# networks:
+#     default:
+#         external: true
+#         name: quang-network
+
+volumes:
+    logs:
+        driver: local

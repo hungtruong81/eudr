@@ -1,0 +1,9 @@
+<VirtualHost *:80>
+    ServerName api.example.com
+    DocumentRoot /srv/eudr/api/public
+    <Directory /srv/eudr/api/public>
+        AllowOverride All
+        Require all granted
+    </Directory>
+    # Add TLS redirect and certificate configuration for production.
+</VirtualHost>
